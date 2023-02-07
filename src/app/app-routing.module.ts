@@ -47,7 +47,31 @@ const routes: Routes = [
   {
     path: 'attach-new-load',
     loadChildren: () => import('./attach-new-load/attach-new-load.module').then( m => m.AttachNewLoadPageModule)
+  },  {
+    path: 'add-trucks',
+    loadChildren: () => import('./add-trucks/add-trucks.module').then( m => m.AddTrucksPageModule)
   },
+  {
+    path: 'your-truck-posted',
+    loadChildren: () => import('./your-truck-posted/your-truck-posted.module').then( m => m.YourTruckPostedPageModule)
+  },
+  {
+    path: 'truk-edit-page',
+    loadChildren: () => import('./truk-edit-page/truk-edit-page.module').then( m => m.TrukEditPagePageModule)
+  },
+  {
+    path: 'tab5',
+    loadChildren: () => import('./tab5/tab5.module').then( m => m.Tab5PageModule)
+  },
+  {
+    path: 'add-new-truk',
+    loadChildren: () => import('./add-new-truk/add-new-truk.module').then( m => m.AddNewTrukPageModule)
+  },
+  {
+    path: 'add-new-truk-details',
+    loadChildren: () => import('./add-new-truk-details/add-new-truk-details.module').then( m => m.AddNewTrukDetailsPageModule)
+  },
+
 
 
 

@@ -1,0 +1,189 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>TrukMarket</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">Enter Pick up Location</ion-label>
+          <ion-icon name="location-outline" slot="start" color="primary"></ion-icon>
+          <ion-input></ion-input>
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Enter Drop Loaction</ion-label>
+          <ion-icon name="location-outline" slot="start" color="danger"></ion-icon>
+          <ion-input></ion-input>
+          <ion-icon name="search-outline" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card-header>
+  </ion-card>
+
+  <h3 class="container">Select Vechile Type For Your load</h3>
+
+  <div class="container">
+    <ion-segment [scrollable]="true" value="heart" style="overflow: hidden;">
+      <ion-segment-button id="open-modal">
+
+        <ion-label>Filter</ion-label>
+        <p><ion-icon name="filter"></ion-icon></p>
+        <ion-modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]"
+          handleBehavior="cycle">
+          <ng-template>
+            <ion-content class="ion-padding">
+              <div class="ion-margin-top">
+                <ion-label>
+                  <ion-item fill="outline">
+                    <ion-label position="floating">Your Bidding price</ion-label>
+                    <ion-input placeholder="Enter new Price"></ion-input>
+                  </ion-item>
+                </ion-label>
+              </div>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
+      </ion-segment-button>
+      <ion-segment-button (click)="toggle('LCV')" value="home">
+        <ion-label>LCV</ion-label>
+        <p>1-8 Tonne</p>
+      </ion-segment-button>
+
+      <ion-segment-button (click)="toggle('Open Truck')" value="heart">
+        <ion-label>Truk</ion-label>
+        <p>1-42Tonne</p>
+      </ion-segment-button>
+      <ion-segment-button (click)="toggle('Hyva')" value="pin">
+        <ion-label>Hyva</ion-label>
+        <p>1-35 Tonne</p>
+      </ion-segment-button>
+      <ion-segment-button (click)="toggle('Container')" value="star">
+        <ion-label>container</ion-label>
+        <p>1-18 Tonne</p>
+      </ion-segment-button>
+      <ion-segment-button (click)="toggle('Trailer')" value="call">
+        <ion-label>Trailer</ion-label>
+        <p>1-100 Tonne</p>
+      </ion-segment-button>
+      <ion-segment-button (click)="toggle('Tanker')" value="globe">
+        <ion-label>Tanker</ion-label>
+        <p>1-35 Tonne</p>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <!-- <table *ngIf="lcv" matSort>
+
+    LCV
+  </table>
+  <table *ngIf="truck" matSort>
+
+    TRUCK
+  </table>
+  <table *ngIf="hyva" matSort>
+
+    HYVA
+  </table>
+  <table *ngIf="container" matSort>
+
+    CONTAINER
+  </table>
+  <table *ngIf="trailer" matSort>
+
+    TRAILER
+  </table>
+  <table *ngIf="tanker" matSort>
+
+    TANKER
+  </table> -->
+
+
+
+  <ion-card *ngFor="let text of item">
+    <div style="float: left; margin-left: 1rem;">
+      <img src="https://vamosys.com/wp-content/uploads/2021/05/top-6-lcv-vehicles-tata-ace-gold-petrol.png" width="25%"
+        height="25%">
+      <h4> {{text.capacity}}Tons {{text.data}}</h4>
+    </div>
+
+    <div style="float: right; margin-top: -5rem;">
+      <p>Current Location<b>{{text.currentLocation}}</b></p>
+      <p>Routes <u>{{text.selectedItems.length}} Location</u> <ion-icon name="location-outline"
+          color="danger"></ion-icon></p>
+      <h3>Placeholder For Badges</h3>
+    </div>
+    <ion-chip>
+      <ion-avatar>
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+      <ion-label>Transpoter</ion-label>
+    </ion-chip>
+
+    <div style="text-align: center">
+      ...............................................................................................</div>
+    <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach">Attach Load</ion-button>
+  </ion-card>
+
+
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container" style="overflow-x: scroll;">
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="bold">LCV <br>0-6 Tonnes</mat-button-toggle>
+      <mat-button-toggle value="italic">Truks <br> 1 to 35KL</mat-button-toggle>
+      <mat-button-toggle value="underline">Hyva <br> 1 to 35 tonnes</mat-button-toggle>
+      <mat-button-toggle value="underline">container <br> 1 to 18 Tonnes</mat-button-toggle>
+      <mat-button-toggle value="underline">Trailer <br> 1 to 100 tonnes</mat-button-toggle>
+
+    </mat-button-toggle-group>
+
+  </div> -->
+
+<!-- <div class="container">
+
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+          <ion-segment scrollable>
+            <ion-segment-button value="LCV">
+              <ion-label>LCV</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Truks">
+              <ion-label>Truks</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Hyva">
+              <ion-label>Hyva</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="container">
+              <ion-label>container</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Trailer">
+              <ion-label>Trailer</ion-label>
+            </ion-segment-button>
+
+          </ion-segment>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </div> -->

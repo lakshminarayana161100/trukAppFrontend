@@ -8,19 +8,19 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class TrukEditPagePage implements OnInit {
   toppings: any;
-  data:any;
-  dropdownList:any[]= [];
-  selectedItems:any= [];
+  data: any;
+  dropdownList: any[] = [];
+  operatingRoutes: any = [];
   dropdownSettings!: IDropdownSettings;
-  vehiclenumber:any;
-  currentLocation:any;
-  capacity:any;
-   Items: any;
-   date:any;
-   real:any;
-   
+  vehiclenumber: any;
+  currentLocation: any;
+  capacity: any;
+  Items: any;
+  date: any;
+  real: any;
 
-   updateproductForm!: FormGroup;
+
+  updateproductForm!: FormGroup;
   objects: any;
   products: any;
 
@@ -33,32 +33,32 @@ export class TrukEditPagePage implements OnInit {
 
     this.objects = localStorage.getItem("TrukPosted");  //use the localstorage we getdata from savedData
     //The localStorage object allows you to save key/value pairs in the browser.
-    this.real=JSON.parse(this.objects)  //parse() The JSON. parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
-  
+    this.real = JSON.parse(this.objects)  //parse() The JSON. parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
+
     console.log(this.objects)
     //this.get()
 
     this.updateproductForm = this.fb.group({
-      selectedItems: [''],
+      operatingRoutes: [''],
       capacity: [''],
       currentLocation: [''],
       data: [''],
       date: [''],
-      vehiclenumber:['']
+      vehiclenumber: ['']
 
     });
 
 
 
     this.dropdownList = [
-      {  item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      'Mumbai',
+      'Bangaluru',
+      'Pune',
+      'Navsari',
+      'New Delhi'
     ];
-    this.selectedItems = [
-     
+    this.operatingRoutes = [
+
     ];
     this.dropdownSettings = {
       singleSelection: false,
@@ -80,9 +80,9 @@ export class TrukEditPagePage implements OnInit {
     console.log(items);
   }
 
-  out(data:any){
+  out(data: any) {
     console.log(data)
-    this.data=data
+    this.data = data
   }
 
 
@@ -96,7 +96,7 @@ export class TrukEditPagePage implements OnInit {
     fetch("http://localhost:3000/addTruk/updateLoads/" + this.real._id, {
       method: 'PUT',
       headers: {
-        "access-Control-Allow-Origin": "*",        
+        "access-Control-Allow-Origin": "*",
         "Content-Type": 'application/json'
       },
       body: JSON.stringify(data),        // JSON Means An intrinsic object that provides functions to convert JavaScript values to and from the JavaScript Object Notation (JSON) format.
@@ -106,11 +106,11 @@ export class TrukEditPagePage implements OnInit {
       .then(result => {
         console.log(result),
 
-          this.products =JSON.parse(result)  //it  runs $parse automatically when it runs the $digest loop, basically $parse is the way angular evaluates expressions
-        
+          this.products = JSON.parse(result)  //it  runs $parse automatically when it runs the $digest loop, basically $parse is the way angular evaluates expressions
+
         this.updateproductForm.reset();   // form reset
         window.location.reload()  // reloading window
-        
+
       }
 
       ).catch(err =>

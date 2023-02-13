@@ -12,13 +12,17 @@ export class AddNewTrukDetailsPage implements OnInit {
   toppings: any;
   data: any;
   dropdownList: any[] = [];
-  selectedItems: any = [];
+  operatingRoutes: any = [];
   dropdownSettings!: IDropdownSettings;
-  vehiclenumber: any;
-  currentLocation: any;
-  capacity: any;
+  vehicleNo: any;
+  vehicleCurrentLocation: any;
+  vehicleCapacity: any;
   Items: any;
   date: any;
+  DriverName: any;
+  DriverNumber: any;
+  vehicleType:any;
+ _id: any;
 
   constructor() { }
 
@@ -26,13 +30,13 @@ export class AddNewTrukDetailsPage implements OnInit {
 
 
     this.dropdownList = [
-      { item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      'Mumbai',
+      'Bangaluru',
+      'Pune',
+      'Navsari',
+      'New Delhi'
     ];
-    this.selectedItems = [
+    this.operatingRoutes = [
 
     ];
     this.dropdownSettings = {
@@ -47,7 +51,7 @@ export class AddNewTrukDetailsPage implements OnInit {
   }
 
 
-  
+
   onItemSelect(item: any) {
     console.log(item);
   }
@@ -58,9 +62,48 @@ export class AddNewTrukDetailsPage implements OnInit {
   out(data: any) {
     console.log(data)
 
-    this.data = data
-    console.log(this.data)
+    this.vehicleType = data
+    // console.log(this.data)
+
+  }
+  NewPostAdd() {
+
+
+    var data = {
+      operatingRoutes: this.operatingRoutes,
+      vehicleType: this.vehicleType,
+      vehicleNo: this.vehicleNo,
+      vehicleCurrentLocation: this.vehicleCurrentLocation,
+      vehicleCapacity: this.vehicleCapacity,
+      date: this.date,
+      DriverName: this.DriverName,
+      DriverNumber: this.DriverNumber,
+      _id:"63e4cbb10c1e2c6d00db2738"
+    }
+    console.log(data)
+    localStorage.setItem("newpostAdd", JSON.stringify(data));
+
+    fetch("http://localhost:3000/quotes/attachVehicleToLoad", {
+      method: 'post',
+      headers: {
+        "access-Control-Allow-Origin": "*",
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(data),
+
+    })
+      .then(response => response.json())
+      .then(result => {
+        console.log(result),
+          this.Items = result     
+       
+
+      }
+
+      ).catch(err =>
+        console.log(err))
+  }
+
 
   }
 
-}

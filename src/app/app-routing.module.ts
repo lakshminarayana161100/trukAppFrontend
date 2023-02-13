@@ -71,6 +71,14 @@ const routes: Routes = [
     path: 'add-new-truk-details',
     loadChildren: () => import('./add-new-truk-details/add-new-truk-details.module').then( m => m.AddNewTrukDetailsPageModule)
   },
+  {
+    path: 'chat-app',
+    loadChildren: () => import('./chat-app/chat-app.module').then( m => m.ChatAppPageModule)
+  },
+  {
+    path: 'attach-load',
+    loadChildren: () => import('./attach-load/attach-load.module').then( m => m.AttachLoadPageModule)
+  },
 
 
 

@@ -13,7 +13,7 @@ export class AddTrucksPage implements OnInit {
   toppings: any;
   data: any;
   dropdownList: any[] = [];
-  selectedItems: any = [];
+  operatingRoutes: any = [];
   dropdownSettings!: IDropdownSettings;
   vehiclenumber: any;
   currentLocation: any;
@@ -28,13 +28,13 @@ export class AddTrucksPage implements OnInit {
   ngOnInit() {
 
     this.dropdownList = [
-      { item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
+      'Mumbai',
+      'Bangaluru',
+      'Pune',
+      'Navsari',
+      'New Delhi'
     ];
-    this.selectedItems = [
+    this.operatingRoutes = [
 
     ];
     this.dropdownSettings = {
@@ -70,7 +70,7 @@ export class AddTrucksPage implements OnInit {
       vehiclenumber: this.vehiclenumber,
       capacity: this.capacity,
       currentLocation: this.currentLocation,
-      selectedItems: this.selectedItems,
+      operatingRoutes: this.operatingRoutes,
       data: this.data,
       date: this.date
     }

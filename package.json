@@ -41,6 +41,9 @@
     "material-icons": "^1.13.1",
     "ng-multiselect-dropdown": "^0.3.9",
     "ng-otp-input": "^1.8.5",
+
+    "ngx-autosize": "^2.0.4",
+    
     "onesignal-cordova-plugin": "^3.3.0",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.4.8",

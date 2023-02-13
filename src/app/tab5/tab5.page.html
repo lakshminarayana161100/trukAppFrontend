@@ -11,15 +11,78 @@
         <ion-item>
           <ion-label position="floating">Enter Pick up Location</ion-label>
           <ion-icon name="location-outline" slot="start" color="primary"></ion-icon>
-          <ion-input></ion-input>
+           <ion-input > 
+            <ion-select interface="popover" [(ngModel)]="pickupLocation">
+            <ion-select-option >Amaravati</ion-select-option>
+           <ion-select-option>Itanagar</ion-select-option>
+           <ion-select-option>Dispur</ion-select-option>
+           <ion-select-option>Patna</ion-select-option>
+           <ion-select-option>Raipur</ion-select-option>
+           <ion-select-option>Panaji</ion-select-option>
+           <ion-select-option>Gandhinagar</ion-select-option>
+           <ion-select-option>Chandigarh</ion-select-option>
+           <ion-select-option>Shimla</ion-select-option>
+           <ion-select-option>Ranchi</ion-select-option>
+           <ion-select-option>Bengaluru</ion-select-option>
+           <ion-select-option>Thiruvananthapuram</ion-select-option>
+           <ion-select-option>Bhopal</ion-select-option>
+           <ion-select-option>mumbai</ion-select-option>
+           <ion-select-option>Imphal</ion-select-option>
+           <ion-select-option>Shillong</ion-select-option>
+           <ion-select-option>Aizawl</ion-select-option>
+           <ion-select-option>Kohima</ion-select-option>
+           <ion-select-option>Bhubaneswar</ion-select-option>
+           <ion-select-option>Chandigarh</ion-select-option>
+           <ion-select-option>Jaipur</ion-select-option>
+           <ion-select-option>Gangtok</ion-select-option>
+           <ion-select-option>Chennai</ion-select-option>
+           <ion-select-option>Hyderabad</ion-select-option>
+           <ion-select-option>Agartala</ion-select-option>
+           <ion-select-option>Lucknow</ion-select-option>
+           <ion-select-option>Kolkata</ion-select-option>
+           <ion-select-option>delhi</ion-select-option>
+          </ion-select>
+        </ion-input> 
           <ion-icon name="search-outline" slot="end"></ion-icon>
         </ion-item>
         <ion-item>
           <ion-label position="floating">Enter Drop Loaction</ion-label>
           <ion-icon name="location-outline" slot="start" color="danger"></ion-icon>
-          <ion-input></ion-input>
+          <ion-input >
+             <ion-select interface="popover" [(ngModel)]="dropLocation">
+              <ion-select-option >Amaravati</ion-select-option>
+             <ion-select-option>Itanagar</ion-select-option>
+             <ion-select-option>Dispur</ion-select-option>
+             <ion-select-option>Patna</ion-select-option>
+             <ion-select-option>Raipur</ion-select-option>
+             <ion-select-option>Panaji</ion-select-option>
+             <ion-select-option>Gandhinagar</ion-select-option>
+             <ion-select-option>Chandigarh</ion-select-option>
+             <ion-select-option>Shimla</ion-select-option>
+             <ion-select-option>Ranchi</ion-select-option>
+             <ion-select-option>Bengaluru</ion-select-option>
+             <ion-select-option>Thiruvananthapuram</ion-select-option>
+             <ion-select-option>Bhopal</ion-select-option>
+             <ion-select-option>mumbai</ion-select-option>
+             <ion-select-option>Imphal</ion-select-option>
+             <ion-select-option>Shillong</ion-select-option>
+             <ion-select-option>Aizawl</ion-select-option>
+             <ion-select-option>Kohima</ion-select-option>
+             <ion-select-option>Bhubaneswar</ion-select-option>
+             <ion-select-option>Chandigarh</ion-select-option>
+             <ion-select-option>Jaipur</ion-select-option>
+             <ion-select-option>Gangtok</ion-select-option>
+             <ion-select-option>Chennai</ion-select-option>
+             <ion-select-option>Hyderabad</ion-select-option>
+             <ion-select-option>Agartala</ion-select-option>
+             <ion-select-option>Lucknow</ion-select-option>
+             <ion-select-option>Kolkata</ion-select-option>
+             <ion-select-option>delhi</ion-select-option>
+            </ion-select> 
+          </ion-input>
           <ion-icon name="search-outline" slot="end"></ion-icon>
         </ion-item>
+        <ion-button fill="solid" shape="round" class="search" style="float: inline-end;" (click)="get()">Search</ion-button>
       </ion-list>
     </ion-card-header>
   </ion-card>
@@ -27,79 +90,42 @@
   <h3 class="container">Select Vechile Type For Your load</h3>
 
   <div class="container">
-    <ion-segment [scrollable]="true" value="heart" style="overflow: hidden;">
-      <ion-segment-button id="open-modal">
+    <ion-segment [scrollable]="true"  >
+      <ion-segment-button >
 
         <ion-label>Filter</ion-label>
         <p><ion-icon name="filter"></ion-icon></p>
-        <ion-modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]"
-          handleBehavior="cycle">
-          <ng-template>
-            <ion-content class="ion-padding">
-              <div class="ion-margin-top">
-                <ion-label>
-                  <ion-item fill="outline">
-                    <ion-label position="floating">Your Bidding price</ion-label>
-                    <ion-input placeholder="Enter new Price"></ion-input>
-                  </ion-item>
-                </ion-label>
-              </div>
-            </ion-content>
-          </ng-template>
-        </ion-modal>
+        
       </ion-segment-button>
-      <ion-segment-button (click)="toggle('LCV')" value="home">
+      <ion-segment-button (click)="toggle('LCV')" >
         <ion-label>LCV</ion-label>
         <p>1-8 Tonne</p>
       </ion-segment-button>
 
-      <ion-segment-button (click)="toggle('Open Truck')" value="heart">
+      <ion-segment-button (click)="toggle('Open Truck')">
         <ion-label>Truk</ion-label>
         <p>1-42Tonne</p>
       </ion-segment-button>
-      <ion-segment-button (click)="toggle('Hyva')" value="pin">
+      <ion-segment-button (click)="toggle('Hyva')" >
         <ion-label>Hyva</ion-label>
         <p>1-35 Tonne</p>
       </ion-segment-button>
-      <ion-segment-button (click)="toggle('Container')" value="star">
+      <ion-segment-button (click)="toggle('Container')" >
         <ion-label>container</ion-label>
         <p>1-18 Tonne</p>
       </ion-segment-button>
-      <ion-segment-button (click)="toggle('Trailer')" value="call">
+      <ion-segment-button (click)="toggle('Trailer')" >
         <ion-label>Trailer</ion-label>
         <p>1-100 Tonne</p>
       </ion-segment-button>
-      <ion-segment-button (click)="toggle('Tanker')" value="globe">
+      <ion-segment-button (click)="toggle('Tanker')" >
         <ion-label>Tanker</ion-label>
         <p>1-35 Tonne</p>
       </ion-segment-button>
     </ion-segment>
   </div>
 
-  <!-- <table *ngIf="lcv" matSort>
-
-    LCV
-  </table>
-  <table *ngIf="truck" matSort>
-
-    TRUCK
-  </table>
-  <table *ngIf="hyva" matSort>
-
-    HYVA
-  </table>
-  <table *ngIf="container" matSort>
-
-    CONTAINER
-  </table>
-  <table *ngIf="trailer" matSort>
-
-    TRAILER
-  </table>
-  <table *ngIf="tanker" matSort>
-
-    TANKER
-  </table> -->
+  
 
 
 
@@ -112,7 +138,7 @@
 
     <div style="float: right; margin-top: -5rem;">
       <p>Current Location<b>{{text.currentLocation}}</b></p>
-      <p>Routes <u>{{text.selectedItems.length}} Location</u> <ion-icon name="location-outline"
+      <p>Routes <u>{{text.operatingRoutes.length}} Location</u> <ion-icon name="location-outline"
           color="danger"></ion-icon></p>
       <h3>Placeholder For Badges</h3>
     </div>
@@ -125,12 +151,18 @@
 
     <div style="text-align: center">
       ...............................................................................................</div>
-    <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach">Attach Load</ion-button>
+    <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach" id="open-modal" routerLink="/attach-load">Attach Load</ion-button>
+    
   </ion-card>
 
 
+ 
 
 </ion-content>
+
+
+
+
 
 
 
@@ -187,3 +219,19 @@
     </ion-grid>
 
   </div> -->
+
+  <!--  <ion-modal trigger="open-modal" [initialBreakpoint]="0.25" [breakpoints]="[0, 0.25, 0.5, 0.75]"
+  handleBehavior="cycle">
+  <ng-template>
+    <ion-content class="ion-padding">
+      <div class="ion-margin-top">
+        <ion-label>
+          <ion-item fill="outline">
+            <ion-label position="floating">Your Bidding price</ion-label>
+            <ion-input placeholder="Enter new Price"></ion-input>
+          </ion-item>
+        </ion-label>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal> -->

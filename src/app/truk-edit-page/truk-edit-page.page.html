@@ -11,6 +11,7 @@
 <ion-content> 
 
   <form [formGroup]="updateproductForm" (ngSubmit)="updateForm(userPost.value)" #userPost="ngForm">
+    
     <ion-accordion-group class="container" [value]="['first']" [multiple]="true">
       <ion-accordion value="first">
         <ion-item slot="header">
@@ -45,7 +46,7 @@
 
             <div>
               <ng-multiselect-dropdown [placeholder]="'Add Your Vechile Routes (States)'" [settings]="dropdownSettings"
-                [data]="dropdownList" [(ngModel)]="real.selectedItems" (onSelect)="onItemSelect($event)" formControlName="selectedItems"
+                [data]="dropdownList" [(ngModel)]="real.operatingRoutes" (onSelect)="onItemSelect($event)" formControlName="operatingRoutes"
                 (onSelectAll)="onSelectAll($event)">
               </ng-multiselect-dropdown>
             </div>

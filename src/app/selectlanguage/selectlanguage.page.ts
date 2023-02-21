@@ -24,8 +24,7 @@ disabled=true
       
     localStorage.setItem('language',JSON.stringify(this.language))
     this.router.navigate(['loginotp'])
-
-    
+ 
 
   }
 }

@@ -24,3 +24,23 @@ ion-modal {
     display: none !important;
     width: 50%;
    }
+
+   ion-segment-button {
+    --background: #54dc98;
+    color: white;
+
+  }
+
+  ion-segment {
+    --background:#f58e26;
+    
+  }
+
+  .noitem{
+    text-align: center;
+    color: #b2b2b2;
+    img{
+        width: 100px;
+        margin-top: 50px;
+    }
+}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-attach-load',
   templateUrl: './attach-load.page.html',
@@ -15,21 +17,27 @@ export class AttachLoadPage implements OnInit {
   expectedPrice: any;
   Quantity: any;
   product: any;
+  typeOfPay:any;
+  selected:any;
+  language:any
+  radiovalue:any
+  
+  
 
-  constructor() { }
-
+  constructor( private router:Router) { }
+  disabled=true
   ngOnInit() {
     this.get()
 
   }
 
 
-  out(data: any) {
-    console.log(data)
-    this.get()
-    this.data = data
+  // out(data: any) {
+  //   console.log(data)
+  //   this.get()
+  //   this.data = data
 
-  }
+  // }
   get() {
     fetch("http://localhost:3000/quotes/allQuotes", {
       method: 'GET',
@@ -49,10 +57,19 @@ export class AttachLoadPage implements OnInit {
         console.log(err))
   }
 
+  out(data:any){
+    console.log(data)
+    this.language =data
+  }
+
   sendData(data:any){
     console.log(data)
     localStorage.setItem("attachload", JSON.stringify(data));
     //The localStorage object allows you to save key/value pairs in the browser.
   }
+
+   proceed(){
+     this.router.navigate(['existing-load'])
+   }
 
 }

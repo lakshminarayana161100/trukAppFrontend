@@ -10,15 +10,20 @@ declare var google :any;
 export class AttachNewLoadPage implements OnInit {
 
   @ViewChild('map', { static: false }) mapElement: any;
-  tonnes:any;
-  product:any;
-  date:any;
-  Quantity:any;
-  Number:any;
-  vehicle:any;
-  loadCapacity:any;
-  expectedPrice:any
-
+  tonnes: any;
+  product: any;
+  date: any;
+  Quantity: any;
+  Number: any;
+  vehicle: any;
+  loadCapacity: any;
+  expectedPrice: any;
+  typeOfPay: any;
+  comments: any;
+  length: any;
+  breadth: any;
+  height: any;
+  state:any;
 
   map: any;
   address: any;
@@ -31,6 +36,12 @@ export class AttachNewLoadPage implements OnInit {
   GoogleAutocomplete: any;
 
 
+  trukname:any;
+  trukvehiclenumber:any;
+  trukcurrentLocation:any;
+  trukoperatingRoutes:any;
+  trukcapacity:any;
+
 
   OriginLocation: any;
   DestinationLocation: any;
@@ -40,19 +51,29 @@ export class AttachNewLoadPage implements OnInit {
   directionsRenderer = new google.maps.DirectionsRenderer();
 
 
-  
+
   Items: any;
-  
+  data: any;
+  objects: any;
+  post: any;
+
 
   constructor(
-    public zone: NgZone,private alertController:AlertController
+    public zone: NgZone, private alertController: AlertController
   ) {
     this.GoogleAutocomplete = new google.maps.places.AutocompleteService();
     this.autocomplete = { input: '' };
     this.autocompleteItems = [];
   }
   ngOnInit(): void {
-    
+
+
+    this.objects = localStorage.getItem("AttachNewLoad");  //use the localstorage we getdata from savedData
+    //The localStorage object allows you to save key/value pairs in the browser.
+    this.post = JSON.parse(this.objects)  //parse() The JSON. parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
+
+    console.log(this.objects)
+  
   }
 
   ngAfterViewInit(): void {
@@ -60,7 +81,7 @@ export class AttachNewLoadPage implements OnInit {
   }
 
 
-  
+
 
 
   loadMapWithDirection() {
@@ -85,6 +106,11 @@ export class AttachNewLoadPage implements OnInit {
 
     // console.log(this.DestinationLocation)
 
+  }
+
+  out(data: any) {
+    console.log(data)
+    this.data = data
   }
 
   GetDestinationLocation(data: any) {
@@ -117,30 +143,30 @@ export class AttachNewLoadPage implements OnInit {
       });
   }
 
-//this is a main function
-calculateAndDisplayRoute() {
-  this.directionsService.route(
-    {
-      origin: {
-        //this.Originlocation
-        query: this.OriginLocation,
+  //this is a main function
+  calculateAndDisplayRoute() {
+    this.directionsService.route(
+      {
+        origin: {
+          //this.Originlocation
+          query: this.OriginLocation,
+        },
+        destination: {
+          //this.destination location
+          query: this.DestinationLocation,
+        },
+        travelMode: google.maps.TravelMode.DRIVING,
       },
-      destination: {
-        //this.destination location
-        query: this.DestinationLocation,
-      },
-      travelMode: google.maps.TravelMode.DRIVING,
-    },
-    (response: any, status: string) => {
-      if (status === 'OK') {
-        this.directionsRenderer.setDirections(response);
+      (response: any, status: string) => {
+        if (status === 'OK') {
+          this.directionsRenderer.setDirections(response);
+        }
+        else {
+          window.alert('Directions request failed dut to ' + status);
+        }
       }
-      else {
-        window.alert('Directions request failed dut to ' + status);
-      }
-    }
-  );
-}
+    );
+  }
   //wE CALL THIS FROM EACH ITEM.
   SelectSearchResult(item: { place_id: any; description: any }) {
     ///WE CAN CONFIGURE MORE COMPLEX FUNCTIONS SUCH AS UPLOAD DATA TO FIRESTORE OR LINK IT TO SOMETHING
@@ -159,14 +185,14 @@ calculateAndDisplayRoute() {
     }
   }
 
-   //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
-   ClearAutocomplete() {
+  //lET'S BE CLEAN! THIS WILL JUST CLEAN THE LIST WHEN WE CLOSE THE SEARCH BAR.
+  ClearAutocomplete() {
     this.autocompleteItems = []
     this.autocomplete.input = ''
   }
-  
-  
-  async sendData(){
+
+
+  async sendData() {
 
     var body = {
       DestinationLocation: this.DestinationLocation,
@@ -178,11 +204,22 @@ calculateAndDisplayRoute() {
       vehicle: this.vehicle,
       loadCapacity: this.loadCapacity,
       expectedPrice: this.expectedPrice,
+      data: this.data,
+      typeOfPay: this.typeOfPay,
+      length: this.length,
+      breadth: this.breadth,
+      height: this.height,
+      comments: this.comments,
+      state:this.state,
 
-
+      trukname:this.post.trukname,
+      trukcapacity:this.post.trukcapacity,
+      trukcurrentLocation:this.post.trukcurrentLocation,
+      trukoperatingRoutes:this.post.trukoperatingRoutes,
+      trukvehiclenumber:this.post.trukvehiclenumber
     }
     console.log(body)
-    fetch("http://localhost:3000/quotes/post", {
+    fetch("http://localhost:3000/quotes/generateQuote", {
       method: 'post',
       headers: {
         "access-Control-Allow-Origin": "*",
@@ -192,10 +229,28 @@ calculateAndDisplayRoute() {
 
     })
       .then(response => response.json())
-      .then(result => {
-    console.log(result)
-          this.Items = result     
-        
+      .then(async result => {
+        console.log(result)
+        this.Items = result.loads
+        const alert = await this.alertController.create({
+          header: 'Successfull',
+          message: 'Load posted Successfully',
+          buttons: [
+            {
+              text: 'Okay',
+              handler: () => {
+                console.log('Confirm Okay');
+                //you can write your code or redirection 
+                // sample redirection code 
+                //window.location.href = '/attach-load';
+
+              }
+            }
+          ],
+        });
+
+        await alert.present();
+
 
       }
 
@@ -203,29 +258,8 @@ calculateAndDisplayRoute() {
         console.log(err))
 
 
-       /* const alert = await this.alertController.create({
-          header: 'Successfull',
-         // subHeader: 'Important message',
-          message: 'Load posted Successfully',
-          buttons: [
-    
-     {
-              text: 'Okay',
-              handler: () => {
-                console.log('Confirm Okay');
-                 //you can write your code or redirection 
-                 // sample redirection code 
-                 window.location.href = '/tab/tab1';
-                 
-              }
-            }
-          ],
-        
-    
-        });
-    
-        await alert.present();*/
-      
+
   }
+
 
 }

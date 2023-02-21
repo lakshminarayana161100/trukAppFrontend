@@ -79,6 +79,10 @@ const routes: Routes = [
     path: 'attach-load',
     loadChildren: () => import('./attach-load/attach-load.module').then( m => m.AttachLoadPageModule)
   },
+  {
+    path: 'existing-load',
+    loadChildren: () => import('./existing-load/existing-load.module').then( m => m.ExistingLoadPageModule)
+  },
 
 
 

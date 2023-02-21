@@ -30,11 +30,35 @@ export class AddNewTrukDetailsPage implements OnInit {
 
 
     this.dropdownList = [
-      'Mumbai',
+      'Amaravati', 
+      'Itanagar',
+      'Dispur',
+      'Patna',
+      'Raipur',
+      'Panaji',
+      'Gandhinagar',
+      'Chandigarh',
+      'Shimla',
+      'Ranchi',
       'Bangaluru',
+      'Thiruvananthapuram',
+      'Bhopal',
+      'mumbai',
+      'Imphal',
+      'Shillong',
+      'Aizawl',
+      'Kohima',
+      'Bhubaneswar',
+      'Chandigarh',
+      'Jaipur',
+      'Gangtok',
+      'Chennai',
+      'Hyderabad',
+      'Agartala',
+      'Lucknow',
+      'Kolkata',
+      'delhi',
       'Pune',
-      'Navsari',
-      'New Delhi'
     ];
     this.operatingRoutes = [
 
@@ -78,6 +102,7 @@ export class AddNewTrukDetailsPage implements OnInit {
       date: this.date,
       DriverName: this.DriverName,
       DriverNumber: this.DriverNumber,
+      //this is load ID we have to make this dynamic
       _id:"63e4cbb10c1e2c6d00db2738"
     }
     console.log(data)
@@ -95,9 +120,8 @@ export class AddNewTrukDetailsPage implements OnInit {
       .then(response => response.json())
       .then(result => {
         console.log(result),
-          this.Items = result     
-       
-
+          this.Items = result  
+          
       }
 
       ).catch(err =>

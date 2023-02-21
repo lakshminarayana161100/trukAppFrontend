@@ -137,10 +137,10 @@
         </button>
         <button mat-menu-item>
           <mat-icon>deactive</mat-icon>
-          <span (click)="isactive(text)" [(ngModel)]="isActive">Deactive</span>
+          <span (click)="isactive(text)" [(ngModel)]="trukisActive">Deactive</span>
         </button>
         <button mat-menu-item>
-          <mat-icon>more Details</mat-icon>
+          <mat-icon>more Details</mat-icon>.
           <span>More Detail</span>
         </button>
         <button mat-menu-item>
@@ -150,21 +150,21 @@
       </mat-menu>
 
       <div style="text-align: center; margin-top: 10px;">
-        <h1 style="margin-left: -236px;">{{text.isActive}}</h1>
+        <h1 style="margin-left: -236px;">{{text.trukisActive}}</h1>
         <img src="https://5.imimg.com/data5/SF/YX/MY-2496828/carton-corrugated-box-500x500.jpg" width="25%" height="25%"
           style="float: left;">
           
-        <h1 style="margin-top: 28px;">{{text.vehiclenumber}}</h1>
-        <p style="margin-top: -12px;">Posted On {{text.date}} | Exprires in 48 Hours</p>
+        <h1 style="margin-top: 28px;">{{text.trukvehiclenumber}}</h1>
+        <p style="margin-top: -12px;">Posted On {{text.trukdate}} | Exprires in 48 Hours</p>
       </div>
       <hr>
       <div style="text-align: center; margin-top: -15px;">
         ................................................................</div>
 
       <ion-card-content style="text-align: center; margin-top: -11px;">
-        {{text.capacity}} Tons --{{text.data}} <br>
-        Avaliable in {{text.currentLocation}} <br>
-        {{text.operatingRoutes.length}} Routes <br>
+        {{text.trukcapacity}} Tons --{{text.trukname}} <br>
+        Avaliable in {{text.trukcurrentLocation}} <br>
+        {{text.trukoperatingRoutes.length}} Routes <br>
         <ion-button>View Bids</ion-button>
       </ion-card-content>
 

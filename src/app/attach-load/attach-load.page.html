@@ -3,7 +3,7 @@
     <div style="display: flex;">
       <ion-icon name="arrow-back-sharp" routerLink="/tab5" router-direction="forward"
         style="font-size: 30px;"></ion-icon>
-      <ion-title>Loads</ion-title>
+      <ion-title>Existing Loads</ion-title>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -33,30 +33,37 @@
 
 </ion-content> -->
 
-<ion-content>
+ <ion-content>
+  <h1 style="text-align: center;">Choosing the Loads</h1>
   <ion-list>
     <ion-radio-group >
       <ion-item *ngFor="let card of item">
-        <ion-radio slot="start" (click)="sendData(card)"></ion-radio>
-        <ion-label>
+        <ion-radio slot="end" (click)="sendData(card)" (change)="out('English')" class="radio"></ion-radio> 
           <ion-card>
-            <ion-card-header>
-              <ion-card-title>{{card.OriginLocation}}--{{card.DestinationLocation}}</ion-card-title>
-              <ion-card-subtitle>Posted on {{card.date}}|Exprire in 24hrs</ion-card-subtitle>
-            </ion-card-header>
-
-            <ion-card-content>
-              {{card.product}}
+            <div style="float: left; margin-left: 1rem;">
               <br>
-              <h1>{{card.data}} --{{card.Quantity}}</h1>
-            </ion-card-content>
-            <ion-content>
-              ₹{{card.expectedPrice}}
-            </ion-content>
+              <img src="https://5.imimg.com/data5/SF/YX/MY-2496828/carton-corrugated-box-500x500.jpg" width="10%" height="10%">
+              <span style="margin-left: 2rem;">{{card.OriginLocation}} - {{card.DestinationLocation}}</span>
+              <h3 style="margin-left: 3rem;">Pickup {{card.date}}</h3>
+            </div>
+            ..............................................................................................
+            <ion-card-content>
+              {{card.product}} <br>
+              <ion-icon name="car-outline" style="font-size: 20px;"></ion-icon>{{card.Quantity}}Tonne(s) {{card.data}} <br>
+              <ion-icon name="card-outline" style="font-size: 15px;"></ion-icon> <span>  {{card.typeOfPay}}</span>
+              <span style="float: right; margin-top: -4rem;">
+                <ion-card-content class="expected">
+                  <p class="price">Expected Price</p>
+                  ₹ {{card.expectedPrice}} /Ton 
+                </ion-card-content>
+              </span>
+              </ion-card-content>
           </ion-card>
-        </ion-label>
-
       </ion-item>
     </ion-radio-group>
   </ion-list>
 </ion-content>
+
+<ion-button slot="end" (click)="proceed()" class="button" shape="round">proceed</ion-button>  
+ <!-- <ion-button slot="end" routerLink="/existing-load">proceed</ion-button>  -->
+

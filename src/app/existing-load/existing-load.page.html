@@ -34,16 +34,17 @@
  <h1 style="text-align: center;">Your Perferred Load Information</h1>
   <ion-card>
     <div style="float: left; margin-left: 1rem;">
+      <br>
       <img src="https://5.imimg.com/data5/SF/YX/MY-2496828/carton-corrugated-box-500x500.jpg" width="10%" height="10%">
-      <span style="margin-left: 2rem;">{{TrukPost.OriginLocation}} - {{TrukPost.DestinationLocation}}</span>
-      <h3 style="margin-left: 7rem; margin-top: -1rem;">Pickup {{TrukPost.date}}</h3>
+      <span style="margin-left: 2rem;" ngDefaultControl>{{TrukPost.OriginLocation}} - {{TrukPost.DestinationLocation}}</span>
+      <h3 style="margin-left: 7rem; margin-top: -1rem;" ngDefaultControl>Pickup {{TrukPost.date}}</h3>
     </div>
-    ...........................................................................................................................
+    ...................................................................................................
   
     <ion-card-content>
       {{TrukPost.product}} <br>
-      <ion-icon name="car-outline" style="font-size: 20px;"></ion-icon>{{TrukPost.Quantity}}Tonne(s) {{TrukPost.data}} <br>
-      <ion-icon name="card-outline" style="font-size: 15px;"></ion-icon> <span>  {{TrukPost.typeOfPay}}</span>
+      <ion-icon name="car-outline" style="font-size: 20px;" ngDefaultControl></ion-icon>{{TrukPost.Quantity}}Tonne(s) {{TrukPost.data}} <br>
+      <ion-icon name="card-outline" style="font-size: 15px;" ngDefaultControl></ion-icon> <span>  {{TrukPost.typeOfPay}}</span>
       <span style="float: right; margin-top: -4rem;">
         <ion-card-content >
           <p class="price">Expected Price</p>

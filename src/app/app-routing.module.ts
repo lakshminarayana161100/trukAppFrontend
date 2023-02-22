@@ -83,6 +83,10 @@ const routes: Routes = [
     path: 'existing-load',
     loadChildren: () => import('./existing-load/existing-load.module').then( m => m.ExistingLoadPageModule)
   },
+  {
+    path: 'help-and-guide',
+    loadChildren: () => import('./help-and-guide/help-and-guide.module').then( m => m.HelpAndGuidePageModule)
+  },
 
 
 

@@ -25,12 +25,9 @@ export class ExistingLoadPage implements OnInit {
   trukdate:any;
   trukvehiclenumber:any;
   router: any;
-  trukmobileNo:any;
+  trukOwnerNumber:any;
 
-  // OriginLocation:any;
-  // DestinationLocation:any;
-  // product:any;
-  // Quantity:any;
+
   
   constructor(private alertController: AlertController, router:Router) {  }
   ngOnInit(): void {
@@ -55,7 +52,7 @@ export class ExistingLoadPage implements OnInit {
       trukcapacity:this.real.trukcapacity,
       trukdate:this.real.trukdate,
       trukoperatingRoutes:this.real.trukoperatingRoutes,
-      trukmobileNo:this.real.trukmobileNo,
+      trukOwnerNumber:this.real.trukOwnerNumber,
       //this is addTruckMarketVehicleToLoad ID we have to make this dynamic
       _id:this.TrukPost._id
     }
@@ -77,7 +74,7 @@ export class ExistingLoadPage implements OnInit {
           this.Items = result
           
           const alert = await this.alertController.create({
-            header: 'Successfull',
+            header: 'Successfully',
             // subHeader: 'Important message',
            // message: 'truk  Successfully',
             buttons: [
@@ -88,6 +85,9 @@ export class ExistingLoadPage implements OnInit {
                   //you can write your code or redirection 
                   // sample redirection code 
                   // window.location.href = '/tab5';
+                  localStorage.removeItem('selectedTruk');
+                  localStorage.removeItem('attachload');
+
                 }
               }
             ],
@@ -101,13 +101,5 @@ export class ExistingLoadPage implements OnInit {
       ).catch(err =>
         console.log(err))
   }
-
-
-
-
-
-
-
-
 
 }

@@ -14,13 +14,18 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 
+
+import { NgxStarRatingModule } from 'ngx-star-rating';
+  
+
+
 //import { HasRoleDirective } from './directives/has-role.directive';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [AppComponent, 
    // HasRoleDirective
   ],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,MatExpansionModule,NgMultiSelectDropDownModule.forRoot(),MatMenuModule,MatCardModule,MatIconModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,BrowserAnimationsModule,MatExpansionModule,NgMultiSelectDropDownModule.forRoot(),MatMenuModule,MatCardModule,MatIconModule,NgxStarRatingModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },FormsModule,CommonModule,ReactiveFormsModule],
   bootstrap: [AppComponent],
 })

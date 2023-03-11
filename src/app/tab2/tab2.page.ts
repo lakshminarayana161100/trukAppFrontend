@@ -18,6 +18,7 @@ export class Tab2Page {
   trukoperatingRoutes: any;
    trukisActive: any
   products: any;
+  trukOwnerNumber: any;
 
 
   constructor() { }
@@ -25,6 +26,8 @@ export class Tab2Page {
 
   ngOnInit(): void {
     this.get()
+
+    //this.trukmobilenumber()
   }
   get() {
     fetch("http://localhost:3000/addTruk/allVehicles", {
@@ -44,6 +47,33 @@ export class Tab2Page {
       ).catch(err =>
         console.log(err))
   }
+
+
+  // ownerNumber(trukOwnerNumber: any) {
+  //   this.TurkActive = trukOwnerNumber
+  //   this.trukmobilenumber()
+  //   console.log(trukOwnerNumber)
+  // }
+
+
+  // trukmobilenumber() {
+  //   fetch("http://localhost:3000/addTruk/allVehicles/" + this.trukOwnerNumber, {
+  //     method: 'GET',
+  //     headers: {
+  //       "access-Control-Allow-Origin": "*",
+
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(result => {
+  //       console.log(result),
+  //         this.item = result.Load
+  //       console.log(this.item)
+  //     }
+
+  //     ).catch(err =>
+  //       console.log(err))
+  // }
 
 
 
@@ -103,6 +133,7 @@ export class Tab2Page {
       .then(result => {
         console.log(result)
         this.get()
+       //this.trukmobilenumber()
       }
 
       ).catch(err =>
@@ -135,6 +166,14 @@ export class Tab2Page {
 
       ).catch(err =>
         console.log(err))
+  }
+
+  progress(){
+
+  }
+
+  complete(){
+
   }
 
 

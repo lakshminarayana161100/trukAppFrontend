@@ -23,7 +23,7 @@ export class Tab5Page implements OnInit {
   trukcurrentLocation: any;
   selectedItems: any;
   items: any = [];
-  OpenTruck:any;
+  OpenTruck: any;
 
   trukdropLocation: any;
   trukpickupLocation: any;
@@ -36,9 +36,9 @@ export class Tab5Page implements OnInit {
 
   ngOnInit() {
 
-    //this.getAllvehicle()
-   // this.vehicleSearch()
-  
+   
+    this.getAllvehicles()
+
     this.dropdownList = [
       'Mumbai',
       'Bangaluru',
@@ -74,68 +74,68 @@ export class Tab5Page implements OnInit {
     console.log(category)
 
   }
-  async presentToast(position:  'middle') {
+  async presentToast(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'all LCV vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
 
     await toast.present();
   }
-  async all(position:  'middle') {
+  async all(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'All Vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
 
-  async opentruk(position:  'middle') {
+  async opentruk(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'All openTruk vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
-  async hyva(position:  'middle') {
+  async hyva(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'all hyva vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
-  async container(position:  'middle') {
+  async container(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'All container Vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
-  async tanker(position:  'middle') {
+  async tanker(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'All Tanker Vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
-  async trailer(position:  'middle') {
+  async trailer(position: 'middle') {
     const toast = await this.toastController.create({
       message: 'All Trailer Vehicles!',
       duration: 500,
       position: position,
-      color:'warning'
+      color: 'warning'
     });
     await toast.present();
   }
@@ -147,44 +147,19 @@ export class Tab5Page implements OnInit {
     console.log(trukname)
   }
 
-
-  // getAllvehicle() {
-
-  //   var data = {
-  //     trukdropLocation: this.trukdropLocation,
-  //     trukpickupLocation: this.trukpickupLocation
-  //   }
-  //   fetch("http://localhost:3000/addTruk/vehicleSearch", {
-  //     method: 'POST',
-  //     headers: {
-  //       "access-Control-Allow-Origin": "*",
-
-  //     },
-  //     body: JSON.stringify(data)
-  //   })
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log(result)
-  //         this.item = result.doc
-  //       console.log(this.item)
-  //     }
-
-  //     ).catch(err =>
-  //       console.log(err))
-  // }
-
   get() {
-    console.log(this.trukdropLocation)
-    console.log(this.trukpickupLocation)
-    
-    console.log(this.filter)
-    fetch("http://localhost:3000/addTruk/filterByVehicle/" + this.filter + "/" + this.trukpickupLocation + "/" + this.trukdropLocation, {
+
+    // console.log(this.trukdropLocation)
+    // console.log(this.trukpickupLocation)
+
+    // console.log(this.filter)
+    fetch("http://localhost:3000/addTruk/filterByVehicle/" + this.filter, {
       method: 'GET',
       headers: {
         "access-Control-Allow-Origin": "*",
 
       },
-      
+
     })
       .then(response => response.json())
       .then(result => {
@@ -198,42 +173,101 @@ export class Tab5Page implements OnInit {
       ).catch(err =>
         console.log(err))
   }
+
+  getOperatingroutes(data: any) {
+    this.filter = data
+    console.log(this.filter, this.trukpickupLocation, this.trukdropLocation)
+
+    if (this.filter && this.trukpickupLocation && this.trukdropLocation) {
+
+      fetch("http://localhost:3000/addTruk/filterBytrukoperatingRoutes/" + this.filter + "/" + this.trukpickupLocation + "/" + this.trukdropLocation, {
+        method: 'GET',
+        headers: {
+          "access-Control-Allow-Origin": "*",
+
+        },
+
+      })
+        .then(response => response.json())
+        .then(result => {
+          console.log(result),
+            this.item = result.vehicle
+
+          console.log(this.item)
+
+        }
+
+        ).catch(err =>
+          console.log(err))
+    }
+    else {
+      this.get()
+    }
+  }
+
+
+
   //vehileSearch based on routes
   vehicleSearch() {
-    var data = {
-      trukdropLocation: this.trukdropLocation,
-      trukpickupLocation: this.trukpickupLocation
+
+    if (this.trukdropLocation && this.trukpickupLocation) {
+      var data = {
+        trukdropLocation: this.trukdropLocation,
+        trukpickupLocation: this.trukpickupLocation
+      }
+
+      fetch("http://localhost:3000/addTruk/vehicleSearch", {
+        method: 'Post',
+        headers: {
+          "access-Control-Allow-Origin": "*",
+          "Content-Type": 'application/json'
+        },
+        body: JSON.stringify(data),
+
+      })
+        .then(response => response.json())
+        .then(result => {
+          console.log(result),
+            this.item = result.doc
+          // this.testForms.reset();
+        }
+
+        ).catch(err =>
+          console.log(err))
+    }
+    else {
+     this.getAllvehicles()
     }
 
-    fetch("http://localhost:3000/addTruk/vehicleSearch", {
-      method: 'Post',
+  }
+
+  getAllvehicles(){
+    fetch("http://localhost:3000/addTruk/allVehicles", {
+      method: 'GET',
       headers: {
         "access-Control-Allow-Origin": "*",
-        "Content-Type": 'application/json'
-      },
-      body: JSON.stringify(data),
 
+      },
     })
       .then(response => response.json())
       .then(result => {
         console.log(result),
-          this.item = result.doc
-        // this.testForms.reset();
+          this.item = result.Load
+        console.log(this.item)
       }
 
       ).catch(err =>
         console.log(err))
-
   }
 
 
 
-  SendData(data:any){
+  SendData(data: any) {
     console.log(data)
     localStorage.setItem("selectedTruk", JSON.stringify(data));
     //The localStorage object allows you to save key/value pairs in the browser.
   }
-  AttachNewLoad(data:any){
+  AttachNewLoad(data: any) {
     console.log(data)
     localStorage.setItem("AttachNewLoad", JSON.stringify(data));
   }

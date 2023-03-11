@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-declare var google :any;
+declare var google: any;
 
 @Component({
   selector: 'app-attach-new-load',
@@ -23,7 +23,7 @@ export class AttachNewLoadPage implements OnInit {
   length: any;
   breadth: any;
   height: any;
-  state:any;
+  state: any;
 
   map: any;
   address: any;
@@ -36,11 +36,11 @@ export class AttachNewLoadPage implements OnInit {
   GoogleAutocomplete: any;
 
 
-  trukname:any;
-  trukvehiclenumber:any;
-  trukcurrentLocation:any;
-  trukoperatingRoutes:any;
-  trukcapacity:any;
+  trukname: any;
+  trukvehiclenumber: any;
+  trukcurrentLocation: any;
+  trukoperatingRoutes: any;
+  trukcapacity: any;
 
 
   OriginLocation: any;
@@ -68,12 +68,10 @@ export class AttachNewLoadPage implements OnInit {
   ngOnInit(): void {
 
 
-    this.objects = localStorage.getItem("AttachNewLoad");  //use the localstorage we getdata from savedData
-    //The localStorage object allows you to save key/value pairs in the browser.
-    this.post = JSON.parse(this.objects)  //parse() The JSON. parse() method parses a JSON string, constructing the JavaScript value or object described by the string.
-
+    this.objects = localStorage.getItem("AttachNewLoad");
+    this.post = JSON.parse(this.objects)
     console.log(this.objects)
-  
+
   }
 
   ngAfterViewInit(): void {
@@ -210,13 +208,13 @@ export class AttachNewLoadPage implements OnInit {
       breadth: this.breadth,
       height: this.height,
       comments: this.comments,
-      state:this.state,
+      state: this.state,
 
-      trukname:this.post.trukname,
-      trukcapacity:this.post.trukcapacity,
-      trukcurrentLocation:this.post.trukcurrentLocation,
-      trukoperatingRoutes:this.post.trukoperatingRoutes,
-      trukvehiclenumber:this.post.trukvehiclenumber
+      trukname: this.post.trukname,
+      trukcapacity: this.post.trukcapacity,
+      trukcurrentLocation: this.post.trukcurrentLocation,
+      trukoperatingRoutes: this.post.trukoperatingRoutes,
+      trukvehiclenumber: this.post.trukvehiclenumber
     }
     console.log(body)
     fetch("http://localhost:3000/quotes/generateQuote", {

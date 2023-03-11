@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/loadingscreen',
+    redirectTo: '/contact-us',
     pathMatch: 'full'
   },
   {
@@ -47,7 +47,8 @@ const routes: Routes = [
   {
     path: 'attach-new-load',
     loadChildren: () => import('./attach-new-load/attach-new-load.module').then( m => m.AttachNewLoadPageModule)
-  },  {
+  },
+  {
     path: 'add-trucks',
     loadChildren: () => import('./add-trucks/add-trucks.module').then( m => m.AddTrucksPageModule)
   },
@@ -86,6 +87,26 @@ const routes: Routes = [
   {
     path: 'help-and-guide',
     loadChildren: () => import('./help-and-guide/help-and-guide.module').then( m => m.HelpAndGuidePageModule)
+  },
+  {
+    path: 'star-staring',
+    loadChildren: () => import('./star-staring/star-staring.module').then( m => m.StarStaringPageModule)
+  },
+  {
+    path: 'your-earnings',
+    loadChildren: () => import('./your-earnings/your-earnings.module').then( m => m.YourEarningsPageModule)
+  },
+  {
+    path: 'contact-us',
+    loadChildren: () => import('./contact-us/contact-us.module').then( m => m.ContactUsPageModule)
+  },
+  {
+    path: 'modal-contact',
+    loadChildren: () => import('./modal-contact/modal-contact.module').then( m => m.ModalContactPageModule)
+  },
+  {
+    path: 'contact-faq',
+    loadChildren: () => import('./contact-faq/contact-faq.module').then( m => m.ContactFAQPageModule)
   },
 
 

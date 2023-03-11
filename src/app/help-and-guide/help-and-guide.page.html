@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 <br>
-<ion-content>
+<!-- <ion-content>
   <div class="container">
     <ion-accordion-group>
       <ion-accordion value="first">
@@ -94,23 +94,23 @@
           <p> 4.First let’s get your Aadhar Verified
 
             <br>
-            ---> Enter your 12-digit Aadhar number
+            === Enter your 12-digit Aadhar number
             and click on get OTP.
             <br>
-            --->You will get an OTP on the mobile
+             === You will get an OTP on the mobile
             number linked to your Aadhar.
             <br>
-            --->Submit your OTP and get Aadhar
+            ===Submit your OTP and get Aadhar
             verified!
           </p>
 
           <p> 5.Next finish the GST verification.
             <br>
-            --->Enter your 15-digit GST number.<br>
+            ====Enter your 15-digit GST number.<br>
 
-            --->You will get an OTP on the mobile
+            ===You will get an OTP on the mobile
             number linked to your GST.<br>
-            --->Submit your OTP and get Aadhar
+            ====Submit your OTP and get Aadhar
             verified!
           </p>
           <br>
@@ -138,4 +138,47 @@
       </ion-accordion>
     </ion-accordion-group>
   </div>
+</ion-content> -->
+
+<ion-content>
+  <div class="container">
+    <ion-accordion-group *ngFor="let text of item">
+      <ion-accordion value="first">
+        <ion-item slot="header">
+          <p>How to post the load on the truk?</p>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-label style="align-items: center;">STEP:</ion-label>
+          <br><br>
+          {{text.Howtoposttheloadonthetruk}}
+        </div>
+      </ion-accordion>
+      <br>
+      <ion-accordion value="second">
+        <ion-item slot="header">
+          <p>How to verify Aadhar and GST on Truk App?</p>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-label style="text-align: center;">STEPS::</ion-label>
+          <br><br>
+          {{text.HowtoverifyAadharandGSTonTrukApp}}
+        </div>
+      </ion-accordion>
+      <br>
+      <ion-accordion value="third">
+        <ion-item slot="header">
+          <p>How to attach load in truk on the Truk App?</p>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-label style="text-align: center;">STEPS::</ion-label>
+          <br><br>
+          {{text.HowtoattachloadintrukontheTrukApp}}
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
 </ion-content>
+
+
+
+

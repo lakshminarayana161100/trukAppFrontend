@@ -22,18 +22,20 @@ ion-modal {
 
   ion-select::part(icon) {
     display: none !important;
-    width: 50%;
+    width: 100%;
    }
 
    ion-segment-button {
-    --background: #54dc98;
-    color: white;
+    --background:#f58e26;
+    color: black;
+    border-radius: 10px;
 
   }
 
   ion-segment {
-    --background:#f58e26;
+    // --background:#f58e26;
     border-radius: 10px;
+  
     
   }
 

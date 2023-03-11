@@ -47,7 +47,7 @@
             </ion-select>
           </ion-input>
           <ion-icon name="search-outline" slot="end"></ion-icon>
-        </ion-item>
+        </ion-item><br>
         <ion-item>
           <ion-label position="floating">Enter Drop Loaction</ion-label>
           <ion-icon name="location-outline" slot="start" color="danger"></ion-icon>
@@ -87,8 +87,9 @@
           </ion-input>
           <ion-icon name="search-outline" slot="end"></ion-icon>
         </ion-item>
-        <ion-button fill="solid" shape="round" class="search" style="float: inline-end;" 
-        (click)="vehicleSearch()" >Search</ion-button>
+        <!-- <div style="text-align: center; margin: 5px;">
+            <ion-button fill="solid" shape="round" class="search" (click)="vehicleSearch()">Search</ion-button>
+          </div> -->
       </ion-list>
     </ion-card-header>
   </ion-card>
@@ -96,121 +97,102 @@
   <h3 class="container">Select Vechile Type For Your load</h3>
 
   <div class="container">
-    <ion-segment [scrollable]="true" value="heart">
-      <ion-segment-button  value="heart" (click)="vehicleSearch()" (click)="all('middle')">
+    <ion-row>
+      <ion-segment [scrollable]="true" value="heart">
+        <ion-col>
+          <ion-segment-button value="heart" (click)="vehicleSearch()" (click)="all('middle')">
+            <ion-icon name="filter" style="font-size: 20px;"></ion-icon>
+            <p>Allvehicles</p>
+          </ion-segment-button>
+        </ion-col>
 
-        <ion-label>Filter</ion-label>
-        <p><ion-icon name="filter"></ion-icon>Allvehicles</p>
-      </ion-segment-button>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('LCV')" (click)="presentToast('middle')">
+            <ion-label>LCV</ion-label>
+            <p>1-8 Tonne</p>
+          </ion-segment-button>
+        </ion-col>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('Open Truck')" (click)="opentruk('middle')">
+            <ion-label>Truk</ion-label>
+            <p>1-42Tonne</p>
+          </ion-segment-button>
+        </ion-col>
 
-      <ion-segment-button (click)="toggle('LCV')" (click)="presentToast('middle')">
-        <ion-label>LCV</ion-label>
-        <p>1-8 Tonne</p>
-      </ion-segment-button>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('Hyva')" (click)="hyva('middle')">
+            <ion-label>Hyva</ion-label>
+            <p>1-35 Tonne</p>
+          </ion-segment-button>
+        </ion-col>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('Container')" (click)="container('middle')">
+            <ion-label>container</ion-label>
+            <p>1-18 Tonne</p>
+          </ion-segment-button>
+        </ion-col>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('Trailer')" (click)="trailer('middle')">
+            <ion-label>Trailer</ion-label>
+            <p>1-100 Tonne</p>
+          </ion-segment-button>
+        </ion-col>
 
-      <ion-segment-button (click)="toggle('Open Truck')" (click)="opentruk('middle')">
-        <ion-label>Truk</ion-label>
-        <p>1-42Tonne</p>
-      </ion-segment-button>
-      <ion-segment-button (click)="toggle('Hyva')" (click)="hyva('middle')">
-        <ion-label>Hyva</ion-label>
-        <p>1-35 Tonne</p>
-      </ion-segment-button>
-      <ion-segment-button (click)="toggle('Container')" (click)="container('middle')">
-        <ion-label>container</ion-label>
-        <p>1-18 Tonne</p>
-      </ion-segment-button>
-      <ion-segment-button (click)="toggle('Trailer')" (click)="trailer('middle')">
-        <ion-label>Trailer</ion-label>
-        <p>1-100 Tonne</p>
-      </ion-segment-button>
-      <ion-segment-button (click)="toggle('Tanker')" (click)="tanker('middle')">
-        <ion-label>Tanker</ion-label>
-        <p>1-35 Tonne</p>
-      </ion-segment-button>
-    </ion-segment>
+        <ion-col>
+          <ion-segment-button (click)="getOperatingroutes('Tanker')" (click)="tanker('middle')">
+            <ion-label>Tanker</ion-label>
+            <p>1-35 Tonne</p>
+          </ion-segment-button>
+        </ion-col>
+      </ion-segment>
+    </ion-row>
+  </div>
+
+
+  <!-- filter by vehicles form page -->
+  <div *ngIf="item.length !=0">
+    <ion-card *ngFor="let text of item">
+      <div style="float: left; margin-left: 1rem;">
+        <img src="https://vamosys.com/wp-content/uploads/2021/05/top-6-lcv-vehicles-tata-ace-gold-petrol.png"
+          width="25%" height="25%">
+        <h4 ngDefaultControl>{{text.trukvehiclenumber}}</h4>
+        <h4> {{text.trukcapacity}}Tons {{text.trukname}}</h4>
+      </div>
+
+      <div style="float: right; margin-top: -5rem;">
+        <p>Current Location<b>{{text.trukcurrentLocation}}</b></p>
+        <p>Routes <span
+            style="color: blue; font-weight: bold;">{{text.trukoperatingRoutes.length}}</span><u>Location</u>
+          <ion-icon name="location-outline" color="danger"></ion-icon>
+        </p>
+        <h3>Placeholder For Badges</h3>
+      </div>
+      <ion-chip>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <ion-label>Transpoter</ion-label>
+      </ion-chip>
+
+      <div style="text-align: center">
+        ...............................................................................................</div>
+      <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach" id="open-modal"
+        routerLink="/attach-new-load" (click)="AttachNewLoad(text)">AttachNewLoad</ion-button>
+      <ion-button style="float: left;" shape="round" class="attach" id="open-modal" routerLink="/attach-load"
+        (click)="SendData(text)">ExistingLoad</ion-button>
+
+    </ion-card>
+
   </div>
 </ion-content>
-<!-- filter by vehicles form page -->
-<ion-content *ngIf="item.length !=0" >
-  <ion-card *ngFor="let text of item">
-    <div style="float: left; margin-left: 1rem;">
-      <img src="https://vamosys.com/wp-content/uploads/2021/05/top-6-lcv-vehicles-tata-ace-gold-petrol.png" width="25%"
-        height="25%">
-        <h4  ngDefaultControl>{{text.trukvehiclenumber}}</h4>
-      <h4> {{text.trukcapacity}}Tons {{text.trukname}}</h4>
-    </div>
 
-    <div style="float: right; margin-top: -5rem;">
-      <p>Current Location<b>{{text.trukcurrentLocation}}</b></p>
-      <p>Routes <span style="color: blue; font-weight: bold;">{{text.trukoperatingRoutes.length}}</span><u>Location</u> <ion-icon name="location-outline"
-          color="danger"></ion-icon></p>
-      <h3>Placeholder For Badges</h3>
-    </div>
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>Transpoter</ion-label>
-    </ion-chip>
-
-    <div style="text-align: center">
-      ...............................................................................................</div>
-    <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach" id="open-modal"
-      routerLink="/attach-new-load" (click)="AttachNewLoad(text)">AttachNewLoad</ion-button>
-    <ion-button style="float: left;" shape="round" class="attach" id="open-modal" routerLink="/attach-load"
-      (click)="SendData(text)">ExistingLoad</ion-button>
-
-  </ion-card>
-
-</ion-content>
-<!-- all vehicles form page -->
- <!-- <div *ngIf="item.length ==0">
-  <ion-card *ngFor="let text of items">
-    <div style="float: left; margin-left: 1rem;">
-      <img src="https://vamosys.com/wp-content/uploads/2021/05/top-6-lcv-vehicles-tata-ace-gold-petrol.png" width="25%"
-        height="25%">
-        <h4  ngDefaultControl>{{text.trukvehiclenumber}}</h4>
-      <h4> {{text.trukcapacity}}Tons {{text.trukname}}</h4>
-    </div>
-
-    <div style="float: right; margin-top: -5rem;">
-      <p>Current Location<b>{{text.trukcurrentLocation}}</b></p>
-      <p>Routes <span style="color: blue; font-weight: bold;">{{text.trukoperatingRoutes.length}}</span><u>Location</u> <ion-icon name="location-outline"
-          color="danger"></ion-icon></p>
-      <h3>Placeholder For Badges</h3>
-    </div>
-    <ion-chip>
-      <ion-avatar>
-        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-      </ion-avatar>
-      <ion-label>Transpoter</ion-label>
-    </ion-chip>
-
-    <div style="text-align: center">
-      ...............................................................................................</div>
-    <ion-button style="float: right; margin-bottom: 12px;" shape="round" class="attach" id="open-modal"
-      routerLink="/attach-new-load" (click)="AttachNewLoad(text)">AttachNewLoad</ion-button>
-    <ion-button style="float: left;" shape="round" class="attach" id="open-modal" routerLink="/attach-load"
-      (click)="SendData(text)">ExistingLoad</ion-button>
-
-  </ion-card>
-
-</div>  -->
-
- <ion-content *ngIf="item.length ==0" class="noitem">
+<ion-content *ngIf="item.length ==0" class="noitem">
   <div>
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROYIDHG7JivZlXLJC27oeHti76eHrkkNdq_A&usqp=CAU" />
     <h1>No truk vehicle!</h1>
   </div>
-</ion-content> 
-<!--  -->
-<!-- <ion-content *ngIf="OpenTruck.length ==0">
-  <div>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROYIDHG7JivZlXLJC27oeHti76eHrkkNdq_A&usqp=CAU" />
-    <h1>No openTruk vehicle!</h1>
-  </div>
-</ion-content> -->
+</ion-content>
+
 
 
 
